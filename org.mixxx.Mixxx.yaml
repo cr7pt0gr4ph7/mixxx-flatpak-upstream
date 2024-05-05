@@ -1,9 +1,11 @@
-app-id: org.mixxx.Mixxx
+app-id: io.github.cr7pt0gr4ph7.Mixxx
 runtime: org.kde.Platform
 runtime-version: '5.15-23.08'
 sdk: org.kde.Sdk
 command: mixxx
 rename-icon: mixxx
+rename-desktop-file: org.mixxx.Mixxx.desktop
+rename-appdata-file: org.mixxx.Mixxx.metainfo.xml
 
 finish-args:
   # Required for DJ controller support
@@ -333,15 +335,14 @@ modules:
       - -DINSTALL_USER_UDEV_RULES=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     post-install:
-      - desktop-file-edit --set-key="Exec" --set-value="mixxx %U" ${FLATPAK_DEST}/share/applications/org.mixxx.Mixxx.desktop
+      - desktop-file-edit --set-key="Exec" --set-value="mixxx %U" ${FLATPAK_DEST}/share/applications/io.github.cr7pt0gr4ph7.Mixxx.desktop
       - mv ${FLATPAK_DEST}/bin/mixxx ${FLATPAK_DEST}/bin/mixxx.bin
       - install -Dm755 mixxx.sh ${FLATPAK_DEST}/bin/mixxx
-      - install -Dm644 org.mixxx.Mixxx.metainfo.xml /app/share/metainfo/org.mixxx.Mixxx.metainfo.xml
       - install -d /app/extensions/Plugins
     sources:
-    - type: archive
-      url: https://github.com/mixxxdj/mixxx/archive/refs/tags/2.4.0.tar.gz
-      sha256: a426bcf6fd9ec517156f524d5236b6929e3e1235af6b6c5240e352309b15db16
+    - type: git
+      url: git@github.com:cr7pt0gr4ph7/mixxx.git
+      branch: staging
     - type: file
       path: org.mixxx.Mixxx.metainfo.xml
     - type: script
