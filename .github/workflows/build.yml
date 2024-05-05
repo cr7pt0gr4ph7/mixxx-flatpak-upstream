@@ -1,0 +1,96 @@
+name: Build Flatpak
+
+on:
+  # Rebuild once a day
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  flatter:
+    name: Build Flatpak
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/andyholmes/flatter/kde:5.15-23.08
+      options: --privileged
+
+    permissions:
+      contents: read
+
+    strategy:
+      matrix:
+        arch: [x86_64]
+      fail-fast: false
+      # Only one job at a time can use the shared repository cache
+      max-parallel: 1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup GPG
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Setup jq
+        uses: vegardit/gha-setup-jq@v1
+
+      - name: Create flatpakrepo file
+        shell: bash
+        run: |
+          github_pages_url=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer {{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/pages | jq -r .html_url)
+
+          cat > default.flatpakrepo <<- EOF
+          [Flatpak Repo]
+          Title=github.com/${{ github.repository }}
+          Url=$github_pages_url
+          Homepage=${{ github.server_url }}/${{ github.repository }}
+          Comment=Custom Flatpak repository of ${{ github.repository }} on GitHub
+          Description=Custom Flatpak repository of ${{ github.repository }} on GitHub
+          GPGKey=${{ secrets.GPG_PUBLIC_KEY }}
+          EOF
+
+      - name: Build
+        uses: andyholmes/flatter@5a7afa8f3c149fc5862a6f9cb5be801f37c4d423
+        with:
+          files: |
+            org.mixxx.Mixxx.yaml
+          arch: ${{ matrix.arch }}
+          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
+          upload-bundles: true
+          upload-pages-artifact: true
+          upload-pages-includes: |
+            default.flatpakrepo
+          flatpak-builder-args: |
+            --install-deps-from=flathub
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: flatter
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

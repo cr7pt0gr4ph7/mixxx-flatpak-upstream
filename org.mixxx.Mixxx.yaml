@@ -341,7 +341,7 @@ modules:
       - install -d /app/extensions/Plugins
     sources:
     - type: git
-      url: git@github.com:cr7pt0gr4ph7/mixxx.git
+      url: https://github.com/cr7pt0gr4ph7/mixxx.git
       branch: staging
     - type: file
       path: org.mixxx.Mixxx.metainfo.xml
