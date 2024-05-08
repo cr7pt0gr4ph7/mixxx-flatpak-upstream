@@ -288,6 +288,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_WITH_QT6=ON
     sources:
       - type: archive
         url: https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.14.2.tar.gz
