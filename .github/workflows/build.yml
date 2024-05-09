@@ -78,6 +78,7 @@ jobs:
             default.flatpakrepo
           flatpak-builder-args: |
             --install-deps-from=flathub
+            --stop-at=mixxx
             --verbose
             --build-only
   deploy:
