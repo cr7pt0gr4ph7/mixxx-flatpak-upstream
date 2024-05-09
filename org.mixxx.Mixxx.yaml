@@ -325,8 +325,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/xsco/libdjinterop/archive/refs/tags/0.20.1.tar.gz
-        sha256: 69bdbd0e68f12858b79795a76a6023962f93f819ca36ea56a9d4680901865d13
+        url: https://github.com/xsco/libdjinterop/archive/refs/tags/0.20.2.tar.gz
+        sha256: 3024b8b49bc0bd673a7f032e7da7b73ce61144951e810683ec89650fedd45b85
 
   # Mixxx 2.4.0
   - name: mixxx
