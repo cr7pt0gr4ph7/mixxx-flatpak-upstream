@@ -78,7 +78,8 @@ jobs:
             default.flatpakrepo
           flatpak-builder-args: |
             --install-deps-from=flathub
-
+            --verbose
+            --build-only
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
