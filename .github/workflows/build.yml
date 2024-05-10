@@ -22,6 +22,7 @@ jobs:
 
     permissions:
       contents: read
+      pages: read
 
     strategy:
       matrix:
