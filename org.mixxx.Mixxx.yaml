@@ -336,6 +336,7 @@ modules:
       - -DINSTALL_USER_UDEV_RULES=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     post-install:
+      - desktop-file-edit --set-key="Name" --set-value="Mixxx (Dev)" ${FLATPAK_DEST}/share/applications/org.mixxx.Mixxx.desktop
       - desktop-file-edit --set-key="Exec" --set-value="mixxx %U" ${FLATPAK_DEST}/share/applications/org.mixxx.Mixxx.desktop
       - mv ${FLATPAK_DEST}/bin/mixxx ${FLATPAK_DEST}/bin/mixxx.bin
       - install -Dm755 mixxx.sh ${FLATPAK_DEST}/bin/mixxx
