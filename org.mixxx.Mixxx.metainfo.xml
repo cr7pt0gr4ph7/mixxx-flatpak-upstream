@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.cr7pt0gr4ph7.Mixxx</id>
+  <id>io.github.cr7pt0gr4ph7.Mixxx.Upstream</id>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
   <project_license>GPL-2.0</project_license>
-  <name>Mixxx (Dev)</name>
+  <name>Mixxx (Upstream)</name>
   <summary>Perform live DJ mixes</summary>
   <developer_name>The Mixxx Development Team</developer_name>
   <description>

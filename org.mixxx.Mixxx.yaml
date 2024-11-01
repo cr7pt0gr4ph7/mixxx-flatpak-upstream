@@ -1,4 +1,4 @@
-app-id: io.github.cr7pt0gr4ph7.Mixxx
+app-id: io.github.cr7pt0gr4ph7.Mixxx.Upstream
 runtime: org.kde.Platform
 runtime-version: '6.7'
 sdk: org.kde.Sdk
@@ -343,8 +343,8 @@ modules:
       - install -d /app/extensions/Plugins
     sources:
     - type: git
-      url: https://github.com/cr7pt0gr4ph7/mixxx.git
-      branch: staging
+      url: https://github.com/mixxxdj/mixxx.git
+      branch: main
     - type: file
       path: org.mixxx.Mixxx.metainfo.xml
     - type: script
