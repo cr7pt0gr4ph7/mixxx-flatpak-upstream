@@ -325,10 +325,10 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/xsco/libdjinterop/archive/refs/tags/0.20.2.tar.gz
-        sha256: 3024b8b49bc0bd673a7f032e7da7b73ce61144951e810683ec89650fedd45b85
+        url: https://github.com/xsco/libdjinterop/archive/refs/tags/0.21.0.tar.gz
+        sha256: 160d4e09b25e859816a6b664058e7c6bc5cd889adeb188a9721c2b65d2133641
 
-  # Mixxx 2.4.0
+  # Mixxx development branch
   - name: mixxx
     buildsystem: cmake-ninja
     config-opts:
