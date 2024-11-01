@@ -4,6 +4,9 @@ This is a custom Flatpak build of [Mixxx](https://mixxx.org/) based on the `main
 branch of [mixxxdj/mixxx](https://github.com/mixxxdj/mixxx/tree/main),
 i.e. the bleeding edge of Mixxx development.
 
+See [cr7pt0gr4ph7/mixxx-flatpak](https://github.com/cr7pt0gr4ph7/mixxx-flatpak)
+for an alternative version that also includes my custom patches.
+
 The ID of the Flatpak has been modified to be `io.github.cr7pt0gr4ph7.Mixxx.Upstream`
 instead of `org.mixxx.Mixxx`, so it ispossible to install it in parallel
 to an already existing "official" Mixxx installation.
