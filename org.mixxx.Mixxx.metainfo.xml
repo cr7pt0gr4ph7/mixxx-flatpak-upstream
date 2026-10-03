@@ -5,7 +5,9 @@
   <project_license>GPL-2.0</project_license>
   <name>Mixxx (Upstream)</name>
   <summary>Perform live DJ mixes</summary>
-  <developer_name>The Mixxx Development Team</developer_name>
+  <developer id="@mixxx@floss.social">
+    <name>The Mixxx Development Team</name>
+  </developer>
   <description>
     <p>
       Mixxx is a highly customizable, cross-platform DJ application that
